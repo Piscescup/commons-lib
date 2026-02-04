@@ -42,31 +42,90 @@ public interface QuinFunction<X1, X2, X3, X4, X5, Y> {
      */
     Y apply(X1 x1, X2 x2, X3 x3, X4 x4, X5 x5);
 
+    /**
+     * Partially applies this function by fixing the first argument.
+     *
+     * <p>The returned {@link QuadFunction} accepts the remaining four arguments
+     * and produces the same result as invoking this function with all
+     * five arguments.
+     *
+     * @param x1 the first argument to be fixed, must not be {@code null}
+     * @return a {@link QuadFunction} accepting the remaining arguments
+     * @throws NullPointerException if {@code x1} is {@code null}
+     */
     default QuadFunction<X2, X3, X4, X5, Y> apply(X1 x1) {
         NullCheck.requireNonNull(x1);
-        return (x2, x3, x4, x5) -> apply(x1, x2, x3, x4, x5);
+
+        return (x2, x3, x4, x5) ->
+            apply(x1, x2, x3, x4, x5);
     }
 
+    /**
+     * Partially applies this function by fixing the first two arguments.
+     *
+     * <p>The returned {@link TriFunction} accepts the remaining three arguments
+     * and produces the same result as invoking this function with all
+     * five arguments.
+     *
+     * @param x1 the first argument to be fixed, must not be {@code null}
+     * @param x2 the second argument to be fixed, must not be {@code null}
+     * @return a {@link TriFunction} accepting the remaining arguments
+     * @throws NullPointerException if {@code x1} or {@code x2} is {@code null}
+     */
     default TriFunction<X3, X4, X5, Y> apply(X1 x1, X2 x2) {
         NullCheck.requireNonNull(x1);
         NullCheck.requireNonNull(x2);
-        return (x3, x4, x5) -> apply(x1, x2, x3, x4, x5);
+
+        return (x3, x4, x5) ->
+            apply(x1, x2, x3, x4, x5);
     }
 
+    /**
+     * Partially applies this function by fixing the first three arguments.
+     *
+     * <p>The returned {@link BinFunction} accepts the remaining two arguments
+     * and produces the same result as invoking this function with all
+     * five arguments.
+     *
+     * @param x1 the first argument to be fixed, must not be {@code null}
+     * @param x2 the second argument to be fixed, must not be {@code null}
+     * @param x3 the third argument to be fixed, must not be {@code null}
+     * @return a {@link BinFunction} accepting the remaining arguments
+     * @throws NullPointerException if any argument is {@code null}
+     */
     default BinFunction<X4, X5, Y> apply(X1 x1, X2 x2, X3 x3) {
         NullCheck.requireNonNull(x1);
         NullCheck.requireNonNull(x2);
         NullCheck.requireNonNull(x3);
-        return (x4, x5) -> apply(x1, x2, x3, x4, x5);
+
+        return (x4, x5) ->
+            apply(x1, x2, x3, x4, x5);
     }
 
+    /**
+     * Partially applies this function by fixing the first four arguments.
+     *
+     * <p>The returned {@link Function} accepts the remaining argument
+     * and produces the same result as invoking this function with all
+     * five arguments.
+     *
+     * @param x1 the first argument to be fixed, must not be {@code null}
+     * @param x2 the second argument to be fixed, must not be {@code null}
+     * @param x3 the third argument to be fixed, must not be {@code null}
+     * @param x4 the fourth argument to be fixed, must not be {@code null}
+     * @return a {@link Function} accepting the remaining argument
+     * @throws NullPointerException if any argument is {@code null}
+     */
     default Function<X5, Y> apply(X1 x1, X2 x2, X3 x3, X4 x4) {
         NullCheck.requireNonNull(x1);
         NullCheck.requireNonNull(x2);
         NullCheck.requireNonNull(x3);
         NullCheck.requireNonNull(x4);
-        return x5 -> apply(x1, x2, x3, x4, x5);
+
+        return x5 ->
+            apply(x1, x2, x3, x4, x5);
     }
+
 
     /**
      * Returns a composed function that first applies this function to
@@ -130,6 +189,12 @@ public interface QuinFunction<X1, X2, X3, X4, X5, Y> {
      * Returns a {@code QuinFunction} that always returns the given constant value.
      *
      * @param constant the constant value to be returned
+     * @param <X1> the type of the first argument to the function
+     * @param <X2> the type of the second argument to the function
+     * @param <X3> the type of the third argument to the function
+     * @param <X4> the type of the fourth argument to the function
+     * @param <X5> the type of the fifth argument to the function
+     * @param <Y>  the type of the result of the function
      * @return a {@code QuinFunction} that always returns the specified constant
      */
     @Contract(pure = true)
@@ -140,13 +205,19 @@ public interface QuinFunction<X1, X2, X3, X4, X5, Y> {
     /**
      * Returns a {@code QuinFunction} that is a reference to the provided function.
      *
-     * @param pentaFunc the quin-function to be returned; must not be {@code null}
+     * @param function the quin-function to be returned; must not be {@code null}
+     * @param <X1> the type of the first argument to the function
+     * @param <X2> the type of the second argument to the function
+     * @param <X3> the type of the third argument to the function
+     * @param <X4> the type of the fourth argument to the function
+     * @param <X5> the type of the fifth argument to the function
+     * @param <Y>  the type of the result of the function
      * @return the non-null quin-function
      * @throws NullPointerException if the provided function is {@code null}
      */
-    static <X1, X2, X3, X4, X5, Y> QuinFunction<X1, X2, X3, X4, X5, Y> of(QuinFunction<X1, X2, X3, X4, X5, Y> pentaFunc) {
-        NullCheck.requireNonNull(pentaFunc);
-        return pentaFunc;
+    static <X1, X2, X3, X4, X5, Y> QuinFunction<X1, X2, X3, X4, X5, Y> of(QuinFunction<X1, X2, X3, X4, X5, Y> function) {
+        NullCheck.requireNonNull(function);
+        return function;
     }
 
     /**

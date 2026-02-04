@@ -208,6 +208,17 @@ public interface QuadPredicate<X1, X2, X3, X4> {
         return (x1, x2, x3, x4) -> false;
     }
 
+    /**
+     * Narrows the given quad predicate to a specific type.
+     *
+     * @param <X1> the type of the first argument to the predicate
+     * @param <X2> the type of the second argument to the predicate
+     * @param <X3> the type of the third argument to the predicate
+     * @param <X4> the type of the fourth argument to the predicate
+     * @param quadPredicate the quad predicate to narrow
+     * @return a quad predicate narrowed to the specified types
+     * @throws NullPointerException if the provided quad predicate is null
+     */
     @SuppressWarnings("unchecked")
     static <X1, X2, X3, X4> QuadPredicate<X1, X2, X3, X4> narrow(QuadPredicate<? super X1, ? super X2, ? super X3, ? super X4> quadPredicate) {
         NullCheck.requireNonNull(quadPredicate);

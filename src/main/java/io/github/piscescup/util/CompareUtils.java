@@ -141,6 +141,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code byte} values.
+         *
+         * @param self  the first value
+         * @param other the second value
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareByte(final byte self, final byte other) {
             if (comparison != 0) {
@@ -152,6 +156,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code byte} arrays lexicographically.
+         *
+         * @param self  the first array
+         * @param other the second array
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareByteArray(final byte[] self, final byte[] other) {
             if (comparison != 0) {
@@ -163,6 +171,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code short} values.
+         *
+         * @param self  the first value
+         * @param other the second value
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareShort(final short self, final short other) {
             if (comparison != 0) {
@@ -174,6 +186,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code short} arrays lexicographically.
+         *
+         * @param self  the first array
+         * @param other the second array
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareShortArray(final short[] self, final short[] other) {
             if (comparison != 0) {
@@ -185,6 +201,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code int} values.
+         *
+         * @param self  the first value
+         * @param other the second value
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareInt(final int self, final int other) {
             if (comparison != 0) {
@@ -196,6 +216,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code int} arrays lexicographically.
+         *
+         * @param self  the first array
+         * @param other the second array
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareIntArray(final int[] self, final int[] other) {
             if (comparison != 0) {
@@ -207,6 +231,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code long} values.
+         *
+         * @param self  the first value
+         * @param other the second value
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareLong(final long self, final long other) {
             if (comparison != 0) {
@@ -218,6 +246,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code long} arrays lexicographically.
+         *
+         * @param self  the first array
+         * @param other the second array
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareLongArray(final long[] self, final long[] other) {
             if (comparison != 0) {
@@ -229,6 +261,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code float} values.
+         *
+         * @param self  the first value
+         * @param other the second value
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareFloat(final float self, final float other) {
             if (comparison != 0) {
@@ -240,6 +276,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code float} arrays lexicographically.
+         *
+         * @param self  the first array
+         * @param other the second array
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareFloatArray(final float[] self, final float[] other) {
             if (comparison != 0) {
@@ -251,6 +291,10 @@ public class CompareUtils {
 
         /**
          * Compares two {@code double} values.
+         *
+         * @param self  the first value
+         * @param other the second value
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareDouble(final double self, final double other) {
             if (comparison != 0) {
@@ -261,13 +305,48 @@ public class CompareUtils {
         }
 
         /**
+         * Compares two {@code double} arrays.
+         *
+         * @param self the first array
+         * @param other the second array
+         * @return this builder instance for method chaining
+         */
+        public @NotNull CompareBuilder compareDoubleArray(final double[] self, final double[] other) {
+            if (comparison != 0) {
+                return this;
+            }
+            comparison = Arrays.compare(self, other);
+            return this;
+        }
+
+
+        /**
          * Compares two {@code boolean} values.
+         *
+         * @param self  the first value
+         * @param other the second value
+         * @return this builder instance for method chaining
          */
         public @NotNull CompareBuilder compareBoolean(final boolean self, final boolean other) {
             if (comparison != 0) {
                 return this;
             }
             comparison = Boolean.compare(self, other);
+            return this;
+        }
+
+        /**
+         * Compares two {@code boolean} arrays.
+         *
+         * @param self the first array
+         * @param other the second array
+         * @return this builder instance for method chaining
+         */
+        public @NotNull CompareBuilder compareBooleanArray(final boolean[] self, final boolean[] other) {
+            if (comparison != 0) {
+                return this;
+            }
+            comparison = Arrays.compare(self, other);
             return this;
         }
 
@@ -364,6 +443,14 @@ public class CompareUtils {
 
         /**
          * Attempts to compare two objects using natural ordering.
+         *
+         * @param <T>   the type of objects being compared
+         * @param self  the first object
+         * @param other the second object
+         * @return this builder instance for method chaining
+         * @throws IllegalArgumentException if natural ordering is required but the
+         *                                  objects do not implement {@link Comparable}
+         * @throws ClassCastException if natural ordering fails at runtime
          */
         public <T> CompareBuilder tryCompare(final T self, final T other) {
             return tryCompare(self, other, null);

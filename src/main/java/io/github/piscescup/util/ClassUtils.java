@@ -22,6 +22,13 @@ public final class ClassUtils {
         return object == null ? null : (Class<T>) object.getClass();
     }
 
+    /**
+     * Returns the component type of an array class.
+     *
+     * @param <T> the type of the array
+     * @param clazz the Class object representing the array type
+     * @return the Class representing the component type of this array, or {@code null} if the input is {@code null}
+     */
     @SuppressWarnings("unchecked")
     public static <T> Class<T> getComponentType(Class<T[]> clazz) {
         return clazz == null ? null : (Class<T>) clazz.getComponentType();

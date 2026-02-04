@@ -528,6 +528,7 @@ public final class StringUtils {
      * }</pre>
      *
      * @param input the input string
+     * @param separator the separator to use between words
      * @return the converted space lower case string
      * @throws NullPointerException if {@code input} is null
      */
@@ -551,21 +552,22 @@ public final class StringUtils {
      * </p>
      *
      * <pre>{@code
-     * StringUtils.toSpaceUpperCase("hello world");   // HELLO WORLD
-     * StringUtils.toSpaceUpperCase("helloWorld");    // HELLO WORLD
-     * StringUtils.toSpaceUpperCase("HelloWorld");    // HELLO WORLD
-     * StringUtils.toSpaceUpperCase("Hello World");   // HELLO WORLD
-     * StringUtils.toSpaceUpperCase("hello-world");   // HELLO WORLD
+     * StringUtils.toSeparatorUpperCase("hello world", "=");   // HELLO=WORLD
+     * StringUtils.toSeparatorUpperCase("helloWorld", "?");    // HELLO?WORLD
+     * StringUtils.toSeparatorUpperCase("HelloWorld", "[");    // HELLO[WORLD
+     * StringUtils.toSeparatorUpperCase("Hello World", "@");   // HELLO@WORLD
+     * StringUtils.toSeparatorUpperCase("hello-world", "$");   // HELLO$WORLD
      *
-     * StringUtils.toSpaceUpperCase("XMLFile");       // XML FILE
-     * StringUtils.toSpaceUpperCase("XML File");      // XML FILE
-     * StringUtils.toSpaceUpperCase("XML_File");      // XML FILE
-     * StringUtils.toSpaceUpperCase("XML-File");      // XML FILE
+     * StringUtils.toSeparatorUpperCase("XMLFile", "z");       // XMLzFILE
+     * StringUtils.toSeparatorUpperCase("XML File", "+");      // XML+FILE
+     * StringUtils.toSeparatorUpperCase("XML_File", "^");      // XML^FILE
+     * StringUtils.toSeparatorUpperCase("XML-File", " ");      // XML FILE
      *
-     * StringUtils.toSpaceUpperCase("STATIC_FINAL");  // STATICFINAL
+     * StringUtils.toSeparatorUpperCase("STATIC_FINAL", "-");  // STATIC-FINAL
      * }</pre>
      *
      * @param input the input string
+     * @param separator the separator to use between words
      * @return the converted space upper case string
      * @throws NullPointerException if {@code input} is null
      */
@@ -590,21 +592,22 @@ public final class StringUtils {
      * </p>
      *
      * <pre>{@code
-     * StringUtils.toSpaceTitleUpperCase("hello world");   // Hello World
-     * StringUtils.toSpaceTitleUpperCase("helloWorld");    // Hello World
-     * StringUtils.toSpaceTitleUpperCase("HelloWorld");    // Hello World
-     * StringUtils.toSpaceTitleUpperCase("Hello World");   // Hello World
-     * StringUtils.toSpaceTitleUpperCase("hello-world");   // Hello World
+     * StringUtils.toSeparatorTitleUpperCase("hello world", "=");   // Hello=World
+     * StringUtils.toSeparatorTitleUpperCase("helloWorld", "?");    // Hello?World
+     * StringUtils.toSeparatorTitleUpperCase("HelloWorld", "[");    // Hello[World
+     * StringUtils.toSeparatorTitleUpperCase("Hello World", "@");   // Hello@World
+     * StringUtils.toSeparatorTitleUpperCase("hello-world", "$");   // Hello$World
      *
-     * StringUtils.toSpaceTitleUpperCase("XMLFile");       // Xml File
-     * StringUtils.toSpaceTitleUpperCase("XML File");      // Xml File
-     * StringUtils.toSpaceTitleUpperCase("XML_File");      // Xml File
-     * StringUtils.toSpaceTitleUpperCase("XML-File");      // Xml File
+     * StringUtils.toSeparatorTitleUpperCase("XMLFile", "z");       // XmlzFile
+     * StringUtils.toSeparatorTitleUpperCase("XML File", "+");      // Xml+File
+     * StringUtils.toSeparatorTitleUpperCase("XML_File", "^");      // Xml^File
+     * StringUtils.toSeparatorTitleUpperCase("XML-File", " ");      // Xml File
      *
-     * StringUtils.toSpaceTitleUpperCase("STATIC_FINAL");      // Static Final
+     * StringUtils.toSeparatorTitleUpperCase("STATIC_FINAL", "-");  // Static-Final
      * }</pre>
      *
      * @param input the input string
+     * @param separator the separator to use between words
      * @return the converted space Title Upper Case string
      * @throws NullPointerException if {@code input} is null
      */
@@ -644,6 +647,7 @@ public final class StringUtils {
      * }</pre>
      *
      * @param input the input string
+     *
      * @return the converted space lower case string
      * @throws NullPointerException if {@code input} is null
      */
