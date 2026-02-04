@@ -2,6 +2,7 @@ package io.github.piscescup.math.interval;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ import java.util.Optional;
  *
  * <h2>Mathematical semantics</h2>
  *
- * <div align="center">
+ * <div style="text-align: center;">
  *   <p><b>∅</b></p>
  *   <p>{@code ∀x, x ∉ ∅}</p>
  *   <p>{@code ∅ ⊆ A} for any interval/set {@code A}</p>
@@ -51,6 +52,8 @@ import java.util.Optional;
  * @since 1.0.0
  */
 public final class EmptyInterval<T> implements Interval<T> {
+    @Serial
+    private static final long serialVersionUID = 162344756789L;
 
     /**
      * A trivial comparator that treats all values as equal.
@@ -133,7 +136,7 @@ public final class EmptyInterval<T> implements Interval<T> {
      * @return a trivial comparator
      */
     @Override
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({"unchecked"})
     public @NotNull Comparator<T> getComparator() {
         return (Comparator<T>) COMPARATOR;
     }
@@ -173,7 +176,7 @@ public final class EmptyInterval<T> implements Interval<T> {
     /**
      * The empty interval contains no values.
      *
-     * <div align="center">
+     * <div style="text-align: center;">
      *    ∀x, x ∉ ∅
      * </div>
      *
@@ -188,7 +191,7 @@ public final class EmptyInterval<T> implements Interval<T> {
     /**
      * Returns {@code true} if and only if {@code other} is also empty.
      *
-     * <div align="center">
+     * <div style="text-align: center;">
      *   ∅ ⊇ ∅
      * </div>
      *
@@ -203,7 +206,7 @@ public final class EmptyInterval<T> implements Interval<T> {
     /**
      * The empty interval is contained by any non-null interval.
      *
-     * <div align="center">
+     * <div style="text-align: center;">
      *   ∅ ⊆ A
      * </div>
      *
@@ -228,7 +231,7 @@ public final class EmptyInterval<T> implements Interval<T> {
     /**
      * The empty interval overlaps no interval.
      *
-     * <div align="center">
+     * <div style="text-align: center;">
      *   ∀A, ∅ ∩ A = ∅
      * </div>
      *
@@ -243,7 +246,7 @@ public final class EmptyInterval<T> implements Interval<T> {
     /**
      * Returns the intersection of this empty interval with {@code other}.
      *
-     * <div align="center">
+     * <div style="text-align: center;">
      *    ∅ ∩ A = ∅
      * </div>
      *
@@ -335,7 +338,7 @@ public final class EmptyInterval<T> implements Interval<T> {
      * <p>Ordering rules:
      * <ul>
      *   <li>∅ == ∅</li>
-     *   <li>∅ < A for any non-empty interval {@code A}</li>
+     *   <li>∅ is smaller than any non-empty interval</li>
      * </ul>
      *
      * <p><b>Note:</b> although {@code o} is annotated as {@link NotNull}, this implementation

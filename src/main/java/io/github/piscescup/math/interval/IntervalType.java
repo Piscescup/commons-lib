@@ -10,33 +10,33 @@ import io.github.piscescup.util.StringUtils;
  * interval notation using parentheses {@code ()} and brackets {@code []}.
  *
  * <h2>Mathematical interpretation</h2>
- *
- * <div align="center">
- *   <table border="1" cellpadding="4" cellspacing="0">
+ * <div style="text-align: center;">
+ *   <table style="border-collapse: collapse; margin: auto;" border="1">
+ *       <caption style="font-weight: bold; padding: 6px;">
  *     <tr>
- *       <th>IntervalType</th>
- *       <th>Notation</th>
- *       <th>Meaning</th>
+ *       <th style="padding:4px;">IntervalType</th>
+ *       <th style="padding:4px;">Notation</th>
+ *       <th style="padding:4px;">Meaning</th>
  *     </tr>
  *     <tr>
- *       <td>{@link #OPEN_INTERVAL}</td>
- *       <td>{@code (a, b)}</td>
- *       <td>Exclusive start and exclusive end</td>
+ *       <td style="padding:4px;">{@link #OPEN_INTERVAL}</td>
+ *       <td style="padding:4px;">{@code (a, b)}</td>
+ *       <td style="padding:4px;">Exclusive start and exclusive end</td>
  *     </tr>
  *     <tr>
- *       <td>{@link #CLOSED_INTERVAL}</td>
- *       <td>{@code [a, b]}</td>
- *       <td>Inclusive start and inclusive end</td>
+ *       <td style="padding:4px;">{@link #CLOSED_INTERVAL}</td>
+ *       <td style="padding:4px;">{@code [a, b]}</td>
+ *       <td style="padding:4px;">Inclusive start and inclusive end</td>
  *     </tr>
  *     <tr>
- *       <td>{@link #OPEN_CLOSED_INTERVAL}</td>
- *       <td>{@code (a, b]}</td>
- *       <td>Exclusive start and inclusive end</td>
+ *       <td style="padding:4px;">{@link #OPEN_CLOSED_INTERVAL}</td>
+ *       <td style="padding:4px;">{@code (a, b]}</td>
+ *       <td style="padding:4px;">Exclusive start and inclusive end</td>
  *     </tr>
  *     <tr>
- *       <td>{@link #CLOSED_OPEN_INTERVAL}</td>
- *       <td>{@code [a, b)}</td>
- *       <td>Inclusive start and exclusive end</td>
+ *       <td style="padding:4px;">{@link #CLOSED_OPEN_INTERVAL}</td>
+ *       <td style="padding:4px;">{@code [a, b)}</td>
+ *       <td style="padding:4px;">Inclusive start and exclusive end</td>
  *     </tr>
  *   </table>
  * </div>

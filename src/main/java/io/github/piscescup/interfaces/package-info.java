@@ -11,7 +11,7 @@
  *     to be thrown during execution</li>
  * </ul>
  *
- * <h2>Structural & Utility Interfaces</h2>
+ * <h2>Structural and Utility Interfaces</h2>
  * <ul>
  *     <li>{@link io.github.piscescup.interfaces.Builder} – a minimal contract for
  *     builder-style object construction</li>

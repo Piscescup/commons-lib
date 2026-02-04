@@ -619,7 +619,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * <p>The returned interval contains no elements and overlaps no interval.
      * This method always returns the same singleton instance.
      *
-     * <h2>Mathematical semantics</h2>
+     * <strong>Mathematical semantics</strong>
      *
      * <pre>
      * ∀x, x ∉ ∅
@@ -627,7 +627,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * ∅ ∩ A = ∅
      * </pre>
      *
-     * <h2>Examples</h2>
+     * <strong>Examples</strong>
      *
      * <pre>{@code
      * Interval<Integer> e = Interval.empty();

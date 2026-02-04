@@ -223,13 +223,19 @@ public interface QuinFunction<X1, X2, X3, X4, X5, Y> {
     /**
      * Narrows the given quin-function to a specific type.
      *
-     * @param pentaFunc the quin-function to narrow
+     * @param <X1> the type of the first argument to the predicate
+     * @param <X2> the type of the second argument to the predicate
+     * @param <X3> the type of the third argument to the predicate
+     * @param <X4> the type of the fourth argument to the predicate
+     * @param <X5> the type of the fifth argument to the predicate
+     * @param <Y>  the type of the result of the function
+     * @param function the quin-function to narrow
      * @return a narrowed quin-function
      * @throws NullPointerException if the provided function is {@code null}
      */
     @SuppressWarnings("unchecked")
-    static <X1, X2, X3, X4, X5, Y> QuinFunction<X1, X2, X3, X4, X5, Y> narrow(QuinFunction<? super X1, ? super X2, ? super X3, ? super X4, ? super X5, ? super Y> pentaFunc) {
-        NullCheck.requireNonNull(pentaFunc);
-        return (QuinFunction<X1, X2, X3, X4, X5, Y>) pentaFunc;
+    static <X1, X2, X3, X4, X5, Y> QuinFunction<X1, X2, X3, X4, X5, Y> narrow(QuinFunction<? super X1, ? super X2, ? super X3, ? super X4, ? super X5, ? super Y> function) {
+        NullCheck.requireNonNull(function);
+        return (QuinFunction<X1, X2, X3, X4, X5, Y>) function;
     }
 }

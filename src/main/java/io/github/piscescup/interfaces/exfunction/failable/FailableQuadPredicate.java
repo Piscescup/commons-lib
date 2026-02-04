@@ -19,6 +19,7 @@ import java.util.function.Predicate;
  * @param <X2> the type of the second argument to the predicate
  * @param <X3> the type of the third argument to the predicate
  * @param <X4> the type of the fourth argument to the predicate
+ * @param <E>  the throwable type
  *
  * @author REN YuanTong
  * @since 1.0.0

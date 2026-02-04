@@ -3,6 +3,9 @@ package io.github.piscescup.math.interval;
 import io.github.piscescup.util.CompareUtils;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.plaf.FileChooserUI;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -73,7 +76,10 @@ import java.util.Objects;
  * @author REN YuanTong
  * @since 1.0.0
  */
-public abstract class AbstractInterval<T> implements Interval<T> {
+public abstract class AbstractInterval<T> implements Interval<T>, Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1554871104L;
 
     /**
      * The maximum (end) bound of this interval.

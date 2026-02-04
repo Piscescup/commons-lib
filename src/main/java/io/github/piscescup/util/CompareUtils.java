@@ -10,12 +10,18 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
+ * A util for {@link Comparator} and {@link Comparator}.
  *
  * @author REN YuanTong
  * @since 1.0.0
  */
 public class CompareUtils {
+    private CompareUtils() {}
 
+    /**
+     * Creates a new {@code CompareBuilder} instance.
+     * @return a new {@code CompareBuilder}
+     */
     @Contract(value = " -> new", pure = true)
     public static @NotNull CompareBuilder createCompareBuilder() {
         return new CompareBuilder();

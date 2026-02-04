@@ -5,6 +5,8 @@ import io.github.piscescup.util.validation.NullCheck;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -51,7 +53,10 @@ import java.util.Comparator;
  */
 public class ComparatorOrderedInterval<T>
     extends AbstractInterval<T>
-    implements Interval<T> {
+    implements Interval<T>, Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1058699532L;
 
     /**
      * Creates a new comparator-ordered interval with the specified bounds, interval type,

@@ -7,6 +7,11 @@ import java.util.List;
 /**
  * Represents a 5 element entry.
  *
+ * @param x1 the first argument
+ * @param x2 the second argument
+ *
+ * @param <X1> the type of the first argument to the predicate
+ * @param <X2> the type of the second argument to the predicate
  * @author REN YuanTong
  * @since 1.0.0
  */

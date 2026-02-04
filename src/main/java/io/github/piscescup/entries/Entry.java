@@ -12,8 +12,6 @@ import java.util.List;
  * @since 1.0.0
  */
 public interface Entry extends Serializable {
-    @Serial
-    public static final long serialVersionUID = 1321L;
 
     /**
      * Returns the number of elements of this entry.

@@ -20,7 +20,13 @@ import java.util.function.Supplier;
 public final class ArrayUtils {
     private ArrayUtils() {}
 
+    /**
+     * Represents a constant value used to indicate that an index was not found.
+     * This is typically used in scenarios where a search operation does not find
+     * the specified element, and -1 is returned to signify the absence of a match.
+     */
     public static final int INDEX_NOT_FOUND = -1;
+
 
     private static final String START_INDEX_OUT_OF_BOUNDS_MSG = "Start index out of bounds - %s";
 
@@ -50,6 +56,12 @@ public final class ArrayUtils {
         return Array.newInstance(newArrayComponentType, 1);
     }
 
+    /**
+     * Checks if the provided object is an array.
+     *
+     * @param obj the object to check
+     * @return true if the object is an array, false otherwise
+     */
     public static boolean isArray(final Object obj) {
         return obj != null && obj.getClass().isArray();
     }

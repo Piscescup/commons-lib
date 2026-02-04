@@ -6,6 +6,8 @@ import io.github.piscescup.util.validation.NullCheck;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -37,8 +39,10 @@ import java.util.Comparator;
  */
 public class NaturalOrderedInterval<T extends Comparable<? super T>>
     extends AbstractInterval<T>
-    implements Interval<T>
+    implements Interval<T>, Serializable
 {
+    @Serial
+    private static final long serialVersionUID = 10586997701532L;
 
     /**
      * Creates a new natural-ordered interval with the specified bounds and interval type.

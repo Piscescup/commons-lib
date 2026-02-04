@@ -70,11 +70,19 @@ public interface Counter {
      */
     long get();
 
+    /**
+     * Create a new {@code AtomicCounter} instance.
+     * @return a new {@code AtomicCounter}
+     */
     @Contract(" -> new")
     static @NotNull Counter atomic() {
         return AtomicCounter.create();
     }
 
+    /**
+     * Create a new {@code SimpleCounter} instance.
+     * @return a new {@code SimpleCounter}
+     */
     @Contract(" -> new")
     static @NotNull Counter simple() {
         return SimpleCounter.create();

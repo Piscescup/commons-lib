@@ -20,7 +20,13 @@ public class AtomicCounter
     @Serial
     private static final long serialVersionUID = 112445645L;
 
+    /**
+     * The value of the counter.
+     */
     private final AtomicLong value;
+    /**
+     * The default value of the counter.
+     */
     private final long defaultValue;
 
     /**

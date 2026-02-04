@@ -14,7 +14,7 @@
  *     <li>{@code Quin*} – five-argument variants</li>
  * </ul>
  *
- * <h2>Composition & Fluent Usage</h2>
+ * <h2>Composition and Fluent Usage</h2>
  * <p>Interfaces in this package are typically designed to support:
  * <ul>
  *     <li>Fluent partial application (currying-style helpers)</li>
