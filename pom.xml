@@ -7,7 +7,7 @@
     <groupId>io.github.piscescup</groupId>
     <artifactId>commons-lib</artifactId>
     <version>1.0.0</version>
-
+    <name>${project.groupId}:${project.artifactId}</name>
     <packaging>jar</packaging>
 
     <description>

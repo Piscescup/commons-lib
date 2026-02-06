@@ -13,6 +13,8 @@ import io.github.piscescup.util.StringUtils;
  * <div style="text-align: center;">
  *   <table style="border-collapse: collapse; margin: auto;" border="1">
  *       <caption style="font-weight: bold; padding: 6px;">
+ *         Interval Type Notation Table
+ *       </caption>
  *     <tr>
  *       <th style="padding:4px;">IntervalType</th>
  *       <th style="padding:4px;">Notation</th>
