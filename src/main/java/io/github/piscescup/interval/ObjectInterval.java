@@ -524,7 +524,7 @@ public interface ObjectInterval<T>
     /**
      * Returns a formatted string representation of this interval using its {@link IntervalType}.
      *
-     * <p>The concrete formatting logic is delegated to {@link IntervalType#format(ObjectInterval)}.
+     * <p>The concrete formatting logic is delegated to {@link IntervalFormatter#format(ObjectInterval, IntervalType)}.
      *
      * <pre>{@code
      * Interval<Integer> a = Interval.naturalOrderedInterval(2, 6, IntervalType.CLOSED_INTERVAL);
