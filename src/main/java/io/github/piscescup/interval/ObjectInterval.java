@@ -1,4 +1,5 @@
-package io.github.piscescup.math.interval;
+package io.github.piscescup.interval;
+
 
 import io.github.piscescup.util.validation.NullCheck;
 import org.jetbrains.annotations.Contract;
@@ -10,7 +11,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Represents a (possibly open/closed) interval over an ordered domain.
+ * Represents an Object interval over an ordered domain.
  *
  * <p>An interval is defined by:
  * <ul>
@@ -22,8 +23,8 @@ import java.util.Optional;
  *
  * <h2>Ordering and Comparator compatibility</h2>
  * <p>All comparisons performed by this interface are based on {@link #getComparator()}.
- * For operations that combine two intervals (e.g. {@link #containsInterval(Interval)},
- * {@link #overlaps(Interval)}, {@link #intersection(Interval)}), the two intervals are
+ * For operations that combine two intervals (e.g. {@link #containsInterval(ObjectInterval)},
+ * {@link #overlaps(ObjectInterval)}, {@link #intersection(ObjectInterval)}), the two intervals are
  * expected to use compatible ordering semantics.
  *
  * <p><b>Important:</b> If two intervals use different comparators that are not mutually
@@ -58,10 +59,9 @@ import java.util.Optional;
  *
  * @author REN YuanTong
  * @since 1.0.0
- * @deprecated Use the {@link io.github.piscescup.interval.ObjectInterval} instead.
  */
-@Deprecated
-public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
+public interface ObjectInterval<T>
+    extends Interval, Comparable<ObjectInterval<T>>, Serializable {
 
     /**
      * Returns the minimum (start) bound of this interval.
@@ -80,17 +80,6 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * @return the maximum (end) bound
      */
     T getMaximum();
-
-    /**
-     * Returns the {@link IntervalType} describing endpoint inclusiveness.
-     *
-     * <p>The interval type determines whether the start/end bounds are inclusive
-     * or exclusive. Convenience methods {@link #isStartInclusive()} and
-     * {@link #isEndInclusive()} are derived from this value.
-     *
-     * @return the interval type
-     */
-    IntervalType getIntervalType();
 
     /**
      * Returns the comparator that defines the ordering of values inside this interval.
@@ -233,7 +222,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * @param other the interval to test
      * @return {@code true} if this interval contains {@code other}
      */
-    default boolean containsInterval(Interval<T> other) {
+    default boolean containsInterval(ObjectInterval<T> other) {
         if (other == null) return false;
         if (!Objects.equals(this.getComparator(), other.getComparator()))
             throw new IllegalArgumentException("Comparator must be the same");
@@ -272,7 +261,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * @param other the interval to test against
      * @return {@code true} if this interval is contained by {@code other}
      */
-    default boolean isContainedBy(Interval<T> other) {
+    default boolean isContainedBy(ObjectInterval<T> other) {
         if (other == null) return false;
         if (!Objects.equals(this.getComparator(), other.getComparator()))
             throw new IllegalArgumentException("Comparator must be the same");
@@ -332,7 +321,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * @param other the other interval
      * @return {@code true} if the intervals overlap
      */
-    default boolean overlaps(Interval<T> other) {
+    default boolean overlaps(ObjectInterval<T> other) {
         if (other == null) return false;
         if (!Objects.equals(this.getComparator(), other.getComparator()))
             throw new IllegalArgumentException("Comparator must be the same");
@@ -371,7 +360,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * @return an {@link Optional} describing the intersection, or empty if there is no overlap
      * @throws IllegalArgumentException if {@code other} uses a different comparator
      */
-    default Optional<Interval<T>> intersection(Interval<T> other) {
+    default Optional<ObjectInterval<T>> intersection(ObjectInterval<T> other) {
         if (other == null) return Optional.of(this);
 
         if (!Objects.equals(this.getComparator(), other.getComparator()))
@@ -533,27 +522,9 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
     }
 
     /**
-     * Returns {@code true} if the start endpoint of this interval is inclusive.
-     *
-     * @return {@code true} if the start is inclusive
-     */
-    default boolean isStartInclusive() {
-        return getIntervalType().isStartInclusive();
-    }
-
-    /**
-     * Returns {@code true} if the end endpoint of this interval is inclusive.
-     *
-     * @return {@code true} if the end is inclusive
-     */
-    default boolean isEndInclusive() {
-        return getIntervalType().isEndInclusive();
-    }
-
-    /**
      * Returns a formatted string representation of this interval using its {@link IntervalType}.
      *
-     * <p>The concrete formatting logic is delegated to {@link IntervalType#format(Interval)}.
+     * <p>The concrete formatting logic is delegated to {@link IntervalType#format(ObjectInterval)}.
      *
      * <pre>{@code
      * Interval<Integer> a = Interval.naturalOrderedInterval(2, 6, IntervalType.CLOSED_INTERVAL);
@@ -563,7 +534,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * @return a formatted string representation of this interval
      */
     default String formattedString() {
-        return getIntervalType().format(this);
+        return IntervalFormatter.format(this, getIntervalType());
     }
 
     /**
@@ -583,7 +554,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * @return a new {@link NaturalOrderedInterval}
      */
     @Contract("_, _, _ -> new")
-    static <V extends Comparable<? super V>> @NotNull Interval<V> naturalOrdered(
+    static <V extends Comparable<? super V>> @NotNull ObjectInterval<V> naturalOrdered(
         V min, V max, IntervalType type
     ) {
         return NaturalOrderedInterval.of(min, max, type);
@@ -608,7 +579,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      * @return a new {@link ComparatorOrderedInterval}
      * @throws NullPointerException if {@code comparator} is null
      */
-    static <V> @NotNull Interval<V> comparatorOrdered(
+    static <V> @NotNull ObjectInterval<V> comparatorOrdered(
         V min, V max, IntervalType type, Comparator<V> comparator
     ) {
         NullCheck.requireNonNull(comparator);
@@ -644,7 +615,7 @@ public interface Interval<T> extends Comparable<Interval<T>>, Serializable {
      *
      * @since 1.0.0
      */
-    static <V> @NotNull Interval<V> empty() {
+    static <V> @NotNull ObjectInterval<V> empty() {
         return EmptyInterval.empty();
     }
 
