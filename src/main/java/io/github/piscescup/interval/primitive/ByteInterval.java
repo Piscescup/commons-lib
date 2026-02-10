@@ -479,7 +479,7 @@ public class ByteInterval implements PrimitiveInterval, Serializable {
      *
      * @return an empty {@link Byte} {@link ObjectInterval} instance.
      */
-    static @NotNull ObjectInterval<Byte> empty() {
+    public static @NotNull ObjectInterval<Byte> empty() {
         return EmptyInterval.empty();
     }
 }

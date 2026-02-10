@@ -471,7 +471,7 @@ public class DoubleInterval implements PrimitiveInterval, Serializable {
 
      * @return an empty {@link Double} {@link ObjectInterval} instance.
      */
-    static @NotNull ObjectInterval<Double> empty() {
+    public static @NotNull ObjectInterval<Double> empty() {
         return EmptyInterval.empty();
     }
 }

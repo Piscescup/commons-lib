@@ -471,7 +471,7 @@ public class FloatInterval implements PrimitiveInterval, Serializable {
 
      * @return an empty {@link Float} {@link ObjectInterval} instance.
      */
-    static @NotNull ObjectInterval<Float> empty() {
+    public static @NotNull ObjectInterval<Float> empty() {
         return EmptyInterval.empty();
     }
 }

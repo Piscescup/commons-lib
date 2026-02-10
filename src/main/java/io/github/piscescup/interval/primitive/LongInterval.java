@@ -472,7 +472,7 @@ public class LongInterval implements PrimitiveInterval, Serializable {
 
      * @return an empty {@link Long} {@link ObjectInterval} instance.
      */
-    static @NotNull ObjectInterval<Long> empty() {
+    public static @NotNull ObjectInterval<Long> empty() {
         return EmptyInterval.empty();
     }
 }

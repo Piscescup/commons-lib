@@ -473,7 +473,7 @@ public class CharInterval implements PrimitiveInterval, Serializable {
 
      * @return an empty {@link Character} {@link ObjectInterval} instance.
      */
-    static @NotNull ObjectInterval<Character> empty() {
+    public static @NotNull ObjectInterval<Character> empty() {
         return EmptyInterval.empty();
     }
 }

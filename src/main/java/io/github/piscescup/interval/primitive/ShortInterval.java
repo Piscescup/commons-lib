@@ -467,7 +467,7 @@ public class ShortInterval implements PrimitiveInterval, Serializable {
 
      * @return an empty {@link Short} {@link ObjectInterval} instance.
      */
-    static @NotNull ObjectInterval<Short> empty() {
+    public static @NotNull ObjectInterval<Short> empty() {
         return EmptyInterval.empty();
     }
 }

@@ -476,7 +476,7 @@ public class IntInterval implements PrimitiveInterval, Serializable {
 
      * @return an empty {@link Integer} {@link ObjectInterval} instance.
      */
-    static @NotNull ObjectInterval<Integer> empty() {
+    public static @NotNull ObjectInterval<Integer> empty() {
         return EmptyInterval.empty();
     }
 }
