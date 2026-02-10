@@ -5,7 +5,6 @@ import java.io.Serializable;
 /**
  * Represents a (possibly open/closed) interval over an ordered domain.
  *
- * @param <T> the element type
  *
  * @author REN YuanTong
  * @since 1.0.0

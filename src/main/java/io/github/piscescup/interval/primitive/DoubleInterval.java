@@ -9,6 +9,7 @@ import io.github.piscescup.util.validation.NullCheck;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Optional;
@@ -71,8 +72,20 @@ import java.util.Optional;
  */
 public class DoubleInterval implements PrimitiveInterval, Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 8895117812478L;
+
+    /**
+     * The minimum (start) endpoint of this interval.
+     */
     private final double minimum;
+    /**
+     * The maximum (end) endpoint of this interval.
+     */
     private final double maximum;
+    /**
+     * The interval type describing endpoint inclusiveness.
+     */
     private final IntervalType intervalType;
 
     /**

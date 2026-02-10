@@ -9,6 +9,7 @@ import io.github.piscescup.util.validation.NullCheck;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Optional;
@@ -74,9 +75,22 @@ import java.util.Optional;
  */
 public class CharInterval implements PrimitiveInterval, Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 8895989911478L;
+
+    /**
+     * The minimum (start) endpoint of this interval.
+     */
     private final char minimum;
+    /**
+     * The maximum (end) endpoint of this interval.
+     */
     private final char maximum;
+    /**
+     * The interval type describing endpoint inclusiveness.
+     */
     private final IntervalType intervalType;
+
 
     /**
      * Creates a {@code CharInterval} with the given bounds and endpoint type.
