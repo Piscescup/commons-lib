@@ -1,4 +1,4 @@
-package io.github.piscescup.math.interval;
+package io.github.piscescup.interval;
 
 
 import io.github.piscescup.exception.IllegalMathIntervalEndpointException;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 /**
- * An {@link Interval} whose ordering is defined by the natural ordering of its elements.
+ * An {@link ObjectInterval} whose ordering is defined by the natural ordering of its elements.
  *
  * <p>This implementation uses {@link Comparator#naturalOrder()} as its comparator and therefore
  * requires the element type {@code T} to implement {@link Comparable}.
@@ -19,7 +19,7 @@ import java.util.Comparator;
  * <h2>Comparator semantics</h2>
  * <p>The comparator of this interval is always {@link Comparator#naturalOrder()}.
  * As a consequence, two {@code NaturalOrderedInterval} instances are comparable with each other
- * (via {@link #compareTo(Interval)}) as long as the other interval uses an equal comparator
+ * (via {@link #compareTo(ObjectInterval)}) as long as the other interval uses an equal comparator
  * according to {@link java.util.Objects#equals(Object, Object)}.
  *
  * <h2>Examples</h2>
@@ -36,12 +36,10 @@ import java.util.Comparator;
  *
  * @author REN YuanTong
  * @since 1.0.0
- * @deprecated Use {@link io.github.piscescup.interval.NaturalOrderedInterval} instead.
  */
-@Deprecated
 public class NaturalOrderedInterval<T extends Comparable<? super T>>
     extends AbstractInterval<T>
-    implements Interval<T>, Serializable
+    implements ObjectInterval<T>, Serializable
 {
     @Serial
     private static final long serialVersionUID = 10586997701532L;
