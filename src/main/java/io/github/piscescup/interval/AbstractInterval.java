@@ -1,16 +1,15 @@
-package io.github.piscescup.math.interval;
+package io.github.piscescup.interval;
 
 import io.github.piscescup.util.CompareUtils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.plaf.FileChooserUI;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
 /**
- * Abstract base class for {@link Interval} implementations with finite bounds.
+ * Abstract base class for {@link ObjectInterval} implementations with finite bounds.
  *
  * <p>This class provides a common implementation for intervals defined by:
  * <ul>
@@ -25,7 +24,7 @@ import java.util.Objects;
  * Two intervals are considered <em>comparable</em> only if their comparators are equal according
  * to {@link Objects#equals(Object, Object)}.
  *
- * <p>Invoking {@link #compareTo(Interval)} on intervals with incompatible comparators
+ * <p>Invoking {@link #compareTo(ObjectInterval)} on intervals with incompatible comparators
  * results in an {@link IllegalArgumentException}.
  *
  * <h2>Comparison semantics</h2>
@@ -75,10 +74,8 @@ import java.util.Objects;
  *
  * @author REN YuanTong
  * @since 1.0.0
- * @deprecated Use {@link io.github.piscescup.interval.AbstractInterval} instead.
  */
-@Deprecated
-public abstract class AbstractInterval<T> implements Interval<T>, Serializable {
+public abstract class AbstractInterval<T> implements ObjectInterval<T>, Serializable {
 
     @Serial
     private static final long serialVersionUID = 1554871104L;
@@ -186,7 +183,7 @@ public abstract class AbstractInterval<T> implements Interval<T>, Serializable {
      * @throws NullPointerException     if {@code other} is {@code null}
      */
     @Override
-    public int compareTo(@NotNull Interval<T> other) {
+    public int compareTo(@NotNull ObjectInterval<T> other) {
         if (!Objects.equals(this.comparator, other.getComparator()))
             throw new IllegalArgumentException("Comparator must be the same");
 
@@ -230,4 +227,5 @@ public abstract class AbstractInterval<T> implements Interval<T>, Serializable {
     public int hashCode() {
         return Objects.hash(maximum, minimum, intervalType, comparator);
     }
+
 }

@@ -1,4 +1,4 @@
-package io.github.piscescup.math.interval;
+package io.github.piscescup.interval;
 
 import io.github.piscescup.exception.IllegalMathIntervalEndpointException;
 import io.github.piscescup.util.validation.NullCheck;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 /**
- * An {@link Interval} whose ordering is defined by a user-supplied {@link Comparator}.
+ * An {@link ObjectInterval} whose ordering is defined by a user-supplied {@link Comparator}.
  *
  * <p>This implementation allows defining intervals over arbitrary element types,
  * including types that do not implement {@link Comparable}, by providing an explicit
@@ -21,7 +21,7 @@ import java.util.Comparator;
  * are based exclusively on the comparator supplied at construction time.
  *
  * <p>Two {@code ComparatorOrderedInterval} instances are considered comparable via
- * {@link #compareTo(Interval)} only if their comparators are equal according to
+ * {@link #compareTo(ObjectInterval)} only if their comparators are equal according to
  * {@link java.util.Objects#equals(Object, Object)}. Otherwise, an
  * {@link IllegalArgumentException} is thrown.
  *
@@ -50,12 +50,10 @@ import java.util.Comparator;
  *
  * @author REN YuanTong
  * @since 1.0.0
- * @deprecated Use {@link io.github.piscescup.interval.ComparatorOrderedInterval} instead.
  */
-@Deprecated
 public class ComparatorOrderedInterval<T>
     extends AbstractInterval<T>
-    implements Interval<T>, Serializable {
+    implements ObjectInterval<T>, Serializable {
 
     @Serial
     private static final long serialVersionUID = 1058699532L;

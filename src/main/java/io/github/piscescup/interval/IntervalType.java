@@ -1,9 +1,9 @@
-package io.github.piscescup.math.interval;
+package io.github.piscescup.interval;
 
 import io.github.piscescup.util.StringUtils;
 
 /**
- * Represents the endpoint inclusiveness type of an {@link Interval}.
+ * Represents the endpoint inclusiveness type of an {@link io.github.piscescup.math.interval.Interval}.
  *
  * <p>An {@code IntervalType} defines whether the start and end bounds of an interval
  * are inclusive or exclusive. Each type corresponds to a common mathematical
@@ -61,9 +61,7 @@ import io.github.piscescup.util.StringUtils;
  *
  * @author REN YuanTong
  * @since 1.0.0
- * @deprecated Use {@link io.github.piscescup.interval.IntervalType} instead.
  */
-@Deprecated
 public enum IntervalType {
 
     /**
@@ -168,58 +166,6 @@ public enum IntervalType {
     }
 
     /**
-     * Formats the given interval using this interval type.
-     *
-     * <p>The format is intended for human-readable output and follows
-     * standard mathematical notation.
-     *
-     * <pre>{@code
-     * Interval<Integer> i =
-     *     Interval.naturalOrderedInterval(2, 6, IntervalType.CLOSED_INTERVAL);
-     *
-     * IntervalType.CLOSED_INTERVAL.format(i);
-     * // "Interval: [2, 6]"
-     * }</pre>
-     *
-     * @param interval the interval to format
-     * @param <V>      the element type
-     * @return a formatted string representation of the interval
-     */
-    public <V> String format(Interval<V> interval) {
-        return "Interval: " + startSymbol + interval.getMinimum()
-            + ", " + interval.getMaximum() + endSymbol;
-    }
-
-    /**
-     * Formats a pair of bounds using this interval type and natural ordering semantics.
-     *
-     * <pre>{@code
-     * IntervalType.OPEN_CLOSED_INTERVAL.naturalFormat(2, 6);
-     * // "Interval: (2, 6]"
-     * }</pre>
-     *
-     * @param start the start bound
-     * @param end   the end bound
-     * @param <V>   the element type
-     * @return a formatted interval string
-     */
-    public <V extends Comparable<? super V>> String naturalFormat(V start, V end) {
-        return "Interval: " + startSymbol + start + ", " + end + endSymbol;
-    }
-
-    /**
-     * Formats an interval whose bounds follow natural ordering.
-     *
-     * @param interval the interval to format
-     * @param <V>      the element type
-     * @return a formatted interval string
-     */
-    public <V extends Comparable<? super V>> String naturalFormat(Interval<V> interval) {
-        return "Interval: " + startSymbol + interval.getMinimum()
-            + ", " + interval.getMaximum() + endSymbol;
-    }
-
-    /**
      * Returns the {@code IntervalType} corresponding to the given inclusiveness flags.
      *
      * <pre>{@code
@@ -245,14 +191,14 @@ public enum IntervalType {
      *
      * @return {@code true} if the start bound is inclusive
      */
-    public abstract boolean isStartInclusive();
+    abstract boolean isStartInclusive();
 
     /**
      * Returns {@code true} if the end endpoint is inclusive.
      *
      * @return {@code true} if the end bound is inclusive
      */
-    public abstract boolean isEndInclusive();
+    abstract boolean isEndInclusive();
 
     /**
      * Returns a human-readable name of this interval type.

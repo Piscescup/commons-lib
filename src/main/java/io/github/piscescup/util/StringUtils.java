@@ -1,5 +1,7 @@
 package io.github.piscescup.util;
 
+import io.github.piscescup.math.interval.ComparatorOrderedInterval;
+import io.github.piscescup.math.interval.IntervalType;
 import io.github.piscescup.util.validation.NullCheck;
 import org.jetbrains.annotations.NotNull;
 

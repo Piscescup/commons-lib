@@ -1,4 +1,4 @@
-package io.github.piscescup.math.interval;
+package io.github.piscescup.interval;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,9 +27,9 @@ import java.util.Optional;
  *
  * <h2>Comparator</h2>
  * <p>The comparator of this interval is a trivial comparator that always returns {@code 0}.
- * It exists only to satisfy the {@link Interval} contract; ordering-related operations on
+ * It exists only to satisfy the {@link ObjectInterval} contract; ordering-related operations on
  * {@code ∅} are defined by overriding default methods (e.g. {@link #contains(Object)},
- * {@link #overlaps(Interval)}, {@link #intersection(Interval)}).
+ * {@link #overlaps(ObjectInterval)}, {@link #intersection(ObjectInterval)}).
  *
  * <h2>Ordering</h2>
  * <p>The empty interval is considered less than any non-empty interval, and equal to another
@@ -50,10 +50,8 @@ import java.util.Optional;
  *
  * @author REN YuanTong
  * @since 1.0.0
- * @deprecated use {@link io.github.piscescup.interval.EmptyInterval} instead.
  */
-@Deprecated
-public final class EmptyInterval<T> implements Interval<T> {
+public final class EmptyInterval<T> implements ObjectInterval<T> {
     @Serial
     private static final long serialVersionUID = 162344756789L;
 
@@ -120,7 +118,7 @@ public final class EmptyInterval<T> implements Interval<T> {
      * Returns an interval type for formatting purposes.
      *
      * <p>Since the empty interval has no endpoints, the returned value does not carry
-     * mathematical meaning and is used only to satisfy the {@link Interval} contract.
+     * mathematical meaning and is used only to satisfy the {@link ObjectInterval} contract.
      *
      * @return an arbitrary interval type (used only for contract compatibility)
      */
@@ -201,7 +199,7 @@ public final class EmptyInterval<T> implements Interval<T> {
      * @return {@code true} if {@code other} is non-null and empty; {@code false} otherwise
      */
     @Override
-    public boolean containsInterval(Interval<T> other) {
+    public boolean containsInterval(ObjectInterval<T> other) {
         return other != null && other.isEmpty();
     }
 
@@ -216,7 +214,7 @@ public final class EmptyInterval<T> implements Interval<T> {
      * @return {@code true} if {@code other} is non-null; {@code false} otherwise
      */
     @Override
-    public boolean isContainedBy(Interval<T> other) {
+    public boolean isContainedBy(ObjectInterval<T> other) {
         return other != null;
     }
 
@@ -241,7 +239,7 @@ public final class EmptyInterval<T> implements Interval<T> {
      * @return {@code false}
      */
     @Override
-    public boolean overlaps(Interval<T> other) {
+    public boolean overlaps(ObjectInterval<T> other) {
         return false;
     }
 
@@ -256,7 +254,7 @@ public final class EmptyInterval<T> implements Interval<T> {
      * @return {@code Optional.of(this)} (the empty interval)
      */
     @Override
-    public Optional<Interval<T>> intersection(Interval<T> other) {
+    public Optional<ObjectInterval<T>> intersection(ObjectInterval<T> other) {
         return Optional.of(this);
     }
 
@@ -304,25 +302,6 @@ public final class EmptyInterval<T> implements Interval<T> {
         return false;
     }
 
-    /**
-     * The empty interval has no endpoints; start inclusiveness is always {@code false}.
-     *
-     * @return {@code false}
-     */
-    @Override
-    public boolean isStartInclusive() {
-        return false;
-    }
-
-    /**
-     * The empty interval has no endpoints; end inclusiveness is always {@code false}.
-     *
-     * @return {@code false}
-     */
-    @Override
-    public boolean isEndInclusive() {
-        return false;
-    }
 
     /**
      * Returns the formatted string representation of the empty interval.
@@ -351,7 +330,7 @@ public final class EmptyInterval<T> implements Interval<T> {
      *         {@code 1} if {@code o} is {@code null}
      */
     @Override
-    public int compareTo(@NotNull Interval<T> o) {
+    public int compareTo(@NotNull ObjectInterval<T> o) {
         if (o == null) return 1;
         if (o.isEmpty()) return 0;
         return -1;
