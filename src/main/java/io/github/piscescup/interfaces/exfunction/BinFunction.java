@@ -20,7 +20,7 @@ import java.util.function.Function;
  * @param <X2> the type of the second argument to the function
  * @param <Y> the type of the result of the function
  *
- * @since 1.8
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface BinFunction<X1, X2, Y> extends BiFunction<X1, X2, Y> {
