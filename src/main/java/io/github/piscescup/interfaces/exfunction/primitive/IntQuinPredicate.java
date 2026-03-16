@@ -1,5 +1,7 @@
 package io.github.piscescup.interfaces.exfunction.primitive;
 
+import io.github.piscescup.util.validation.NullCheck;
+
 /**
  * Represents a predicate (boolean-valued function) of five {@code int}-valued arguments.
  *
