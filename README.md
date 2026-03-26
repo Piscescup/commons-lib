@@ -5,12 +5,6 @@ It provides string and array utilities, argument/state validation helpers,
 interval models, pair and tuple-like structures, counter implementations, 
 and a richer set of functional interfaces than the JDK offers out of the box.
 
-It is suitable for:
-
-- shared infrastructure across multiple Java projects
-- Minecraft/Fabric utilities and common modules
-- projects that need better interval modeling and multi-argument functional interfaces
-
 ## Installation
 
 Maven:
