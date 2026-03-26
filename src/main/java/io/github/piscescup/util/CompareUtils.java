@@ -58,7 +58,7 @@ public class CompareUtils {
      *
      *   <li><b>Array comparison</b><br>
      *       Arrays are compared lexicographically using
-     *       {@link java.util.Arrays#compare}:
+     *       {@link Arrays#compare}:
      *       <ul>
      *         <li>Elements are compared in index order</li>
      *         <li>The first differing element determines the result</li>
