@@ -6,7 +6,7 @@
 
     <groupId>io.github.piscescup</groupId>
     <artifactId>commons-lib</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <packaging>jar</packaging>
 
@@ -62,6 +62,12 @@
             <artifactId>annotations</artifactId>
             <version>26.0.2-1</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.6.0-jre</version>
         </dependency>
         
     </dependencies>
