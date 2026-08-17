@@ -1,23 +1,19 @@
 package io.github.piscescup.interfaces;
 
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.function.Function;
-
 /**
  * An equality function, which imposes an <i>equivalence relation</i> on
  * some collection of objects. Equalators can be passed to algorithms
  * or data structures to allow precise control over equality semantics.
- * <p>
+ *
  * Equalators can also be used when the natural equality defined by
  * {@link Object#equals(Object)} or {@link Equalable} is not appropriate
  * for a particular algorithm or operation.<p>
- * <p>
+ *
  * The equality relation imposed by an equalator {@code c} on a set
  * of elements {@code S} is defined as:<pre>
  *       {(x, y) such that c.equals(x, y) == true}.
  * </pre>
- * <p>
+ *
  * This relation must satisfy the properties of an equivalence relation:
  *
  * <ul>

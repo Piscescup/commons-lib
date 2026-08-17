@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Represents a 5 element entry.
+ * Represents a 2 element entry.
  *
  * @param x1 the first argument
  * @param x2 the second argument
