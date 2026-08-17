@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents an object that can be serialized to and deserialized from
- * a {@link com.google.gson.JsonElement}.
+ * a {@link JsonElement}.
  *
  * <p>Implementations of this interface provide bidirectional conversion
  * between Java objects and their JSON representation using the

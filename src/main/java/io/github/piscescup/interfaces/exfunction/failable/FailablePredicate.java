@@ -13,7 +13,7 @@ import java.util.function.Predicate;
  * This is a {@link FunctionalInterface} whose functional method is
  * {@link #testOrThrow(Object)}.
  * <p>
- * This interface is similar to {@link java.util.function.Predicate},
+ * This interface is similar to {@link Predicate},
  * but allows the predicate evaluation to throw a specified exception type.
  *
  * @param <X> the type of the input to the predicate
