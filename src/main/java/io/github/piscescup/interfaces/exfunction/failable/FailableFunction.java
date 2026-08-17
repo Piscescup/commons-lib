@@ -14,7 +14,7 @@ import java.util.function.Function;
  * This is a {@link FunctionalInterface} whose functional method is
  * {@link #applyOrThrow(Object)}.
  * <p>
- * This interface is similar to {@link java.util.function.Function},
+ * This interface is similar to {@link Function},
  * but allows the operation to throw a specified exception type.
  *
  * @param <X> the type of the input to the function

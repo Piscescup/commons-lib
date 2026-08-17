@@ -512,7 +512,7 @@ public final class ArrayUtils {
     /**
      * Creates a new array with the specified component type and length.
      * <p>
-     * This method is a convenient wrapper around {@link java.lang.reflect.Array#newInstance(Class, int)}.
+     * This method is a convenient wrapper around {@link Array#newInstance(Class, int)}.
      * </p>
      * <pre>{@code
      * String[] array = ArrayUtils.newInstance(String.class, 3);
