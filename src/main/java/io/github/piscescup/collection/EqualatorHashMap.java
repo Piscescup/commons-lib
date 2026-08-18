@@ -3,6 +3,7 @@ package io.github.piscescup.collection;
 import io.github.piscescup.interfaces.HashEqualator;
 import io.github.piscescup.util.validation.NullCheck;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.AbstractMap;
 import java.util.AbstractSet;
@@ -11,6 +12,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * A hash-based {@link Map} implementation that determines key equality and
@@ -64,7 +67,9 @@ import java.util.Set;
  * @see HashMap
  * @since 1.1.0
  */
-public final class EqualatorHashMap<K, V> extends AbstractMap<K, V> {
+public final class EqualatorHashMap<K, V>
+    extends AbstractMap<K, V>
+    implements Map<K, V> {
 
     /**
      * The hash equalator used to determine key equality and hash values.
@@ -77,6 +82,9 @@ public final class EqualatorHashMap<K, V> extends AbstractMap<K, V> {
      */
     @NotNull
     private final Map<HashKey<K>, V> map;
+
+    @Nullable
+    private transient Set<Entry<K, V>> entrySet;
 
     /**
      * Creates an empty map whose key equality and hash values are determined
@@ -217,6 +225,106 @@ public final class EqualatorHashMap<K, V> extends AbstractMap<K, V> {
     }
 
     /**
+     * Returns the value to which the specified key is mapped, or
+     * {@code defaultValue} if this map contains no mapping for the key.
+     *
+     * @param key          the key whose associated value is to be returned
+     * @param defaultValue the default value
+     * @return the mapped value, or {@code defaultValue} if no mapping exists
+     */
+    @Override
+    public V getOrDefault(
+        final Object key,
+        final V defaultValue
+    ) {
+        HashKey<K> hashKey = createLookupKey(key);
+
+        return hashKey == null
+            ? defaultValue
+            : map.getOrDefault(hashKey, defaultValue);
+    }
+
+    /**
+     * Associates the specified value with the specified key if no value is
+     * currently associated with an equivalent key.
+     *
+     * @param key   the key with which the specified value is to be associated
+     * @param value the value to be associated with the specified key
+     * @return the previous value associated with an equivalent key, or
+     *         {@code null} if there was no mapping
+     */
+    @Override
+    public V putIfAbsent(
+        final K key,
+        final V value
+    ) {
+        return map.putIfAbsent(
+            new HashKey<>(key, equalator),
+            value
+        );
+    }
+
+    /**
+     * Removes the mapping for the specified key only if it is currently mapped
+     * to the specified value.
+     *
+     * @param key   the key whose mapping is to be removed
+     * @param value the value expected to be associated with the key
+     * @return {@code true} if the mapping was removed
+     */
+    @Override
+    public boolean remove(
+        final Object key,
+        final Object value
+    ) {
+        HashKey<K> hashKey = createLookupKey(key);
+
+        return hashKey != null
+            && map.remove(hashKey, value);
+    }
+
+    /**
+     * Replaces the value associated with the specified key if a mapping exists.
+     *
+     * @param key   the key whose associated value is to be replaced
+     * @param value the replacement value
+     * @return the previous value associated with the key, or {@code null} if
+     *         there was no mapping
+     */
+    @Override
+    public V replace(
+        final K key,
+        final V value
+    ) {
+        return map.replace(
+            new HashKey<>(key, equalator),
+            value
+        );
+    }
+
+    /**
+     * Replaces the value associated with the specified key only if it is
+     * currently mapped to the specified old value.
+     *
+     * @param key      the key whose value is to be replaced
+     * @param oldValue the expected current value
+     * @param newValue the replacement value
+     * @return {@code true} if the value was replaced
+     */
+    @Override
+    public boolean replace(
+        final K key,
+        final V oldValue,
+        final V newValue
+    ) {
+        return map.replace(
+            new HashKey<>(key, equalator),
+            oldValue,
+            newValue
+        );
+    }
+
+    /**
      * Removes the mapping for the specified key from this map if present.
      *
      * <p>Key equality is determined by the configured
@@ -256,7 +364,125 @@ public final class EqualatorHashMap<K, V> extends AbstractMap<K, V> {
     @Override
     @NotNull
     public Set<Entry<K, V>> entrySet() {
-        return new EntrySet();
+        Set<Entry<K, V>> result = entrySet;
+
+        if (result == null) {
+            result = new EntrySet();
+            entrySet = result;
+        }
+
+        return result;
+    }
+
+    /**
+     * If the specified key is not already associated with a non-null value,
+     * attempts to compute its value using the specified mapping function and
+     * enters it into this map unless {@code null}.
+     *
+     * @param key             the key with which the computed value is to be
+     *                        associated
+     * @param mappingFunction the function used to compute a value
+     * @return the current or computed value associated with the key
+     * @throws NullPointerException if {@code mappingFunction} is {@code null}
+     */
+    @Override
+    public V computeIfAbsent(
+        final K key,
+        @NotNull final Function<? super K, ? extends V> mappingFunction
+    ) {
+        NullCheck.requireNonNull(mappingFunction);
+
+        HashKey<K> hashKey =
+            new HashKey<>(key, equalator);
+
+        return map.computeIfAbsent(
+            hashKey,
+            ignored -> mappingFunction.apply(key)
+        );
+    }
+
+    /**
+     * Computes a new mapping for the specified key if it is currently associated
+     * with a non-null value.
+     *
+     * @param key               the key whose value is to be recomputed
+     * @param remappingFunction the function used to compute the new value
+     * @return the new value associated with the key, or {@code null} if no
+     *         mapping remains
+     * @throws NullPointerException if {@code remappingFunction} is {@code null}
+     */
+    @Override
+    public V computeIfPresent(
+        final K key,
+        @NotNull final BiFunction<? super K, ? super V, ? extends V> remappingFunction
+    ) {
+        NullCheck.requireNonNull(remappingFunction);
+
+        HashKey<K> hashKey =
+            new HashKey<>(key, equalator);
+
+        return map.computeIfPresent(
+            hashKey,
+            (ignored, value) ->
+                remappingFunction.apply(key, value)
+        );
+    }
+
+    /**
+     * Attempts to compute a mapping for the specified key and its current mapped
+     * value.
+     *
+     * @param key               the key whose mapping is to be computed
+     * @param remappingFunction the function used to compute the new value
+     * @return the resulting value associated with the key, or {@code null} if no
+     *         mapping remains
+     * @throws NullPointerException if {@code remappingFunction} is {@code null}
+     */
+    @Override
+    public V compute(
+        final K key,
+        @NotNull final BiFunction<? super K, ? super V, ? extends V> remappingFunction
+    ) {
+        NullCheck.requireNonNull(remappingFunction);
+
+        HashKey<K> hashKey =
+            new HashKey<>(key, equalator);
+
+        return map.compute(
+            hashKey,
+            (ignored, value) ->
+                remappingFunction.apply(key, value)
+        );
+    }
+
+    /**
+     * Associates the specified value with the specified key if no non-null value
+     * is currently associated with it. Otherwise, replaces the existing value
+     * with the result produced by the specified remapping function.
+     *
+     * @param key               the key with which the resulting value is to be
+     *                          associated
+     * @param value             the value to merge
+     * @param remappingFunction the function used to combine the existing and new
+     *                          values
+     * @return the resulting value associated with the key
+     * @throws NullPointerException if {@code value} or
+     *                              {@code remappingFunction} is {@code null}
+     */
+    @Override
+    public V merge(
+        final K key,
+        @NotNull final V value,
+        @NotNull final BiFunction<? super V, ? super V, ? extends V> remappingFunction
+    ) {
+        NullCheck.requireNonNull(value);
+        NullCheck.requireNonNull(remappingFunction);
+
+        return map.merge(
+            new HashKey<>(key, equalator),
+            value,
+            remappingFunction
+        );
     }
 
     /**
