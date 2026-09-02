@@ -134,6 +134,7 @@ public interface ObjBooleanToBooleanFunction<X> {
         return function;
     }
 
+
     /**
      * Narrows the given function to a specific object argument type.
      *
