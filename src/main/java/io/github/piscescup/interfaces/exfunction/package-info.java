@@ -3,8 +3,8 @@
  *
  * <p>This package provides multi-arity functional interfaces that complement the
  * standard Java {@code java.util.function} set. The goal is to offer a consistent
- * and readable functional programming model when more than two parameters are
- * required.
+ * and readable functional programming model for higher-arity operations and
+ * mixed object/primitive specializations.
  *
  * <h2>Provided Arity Levels</h2>
  * <ul>
@@ -13,6 +13,14 @@
  *     <li>{@code Quad*} – four-argument variants</li>
  *     <li>{@code Quin*} – five-argument variants</li>
  * </ul>
+ *
+ * <h2>Mixed Object/Primitive Interfaces</h2>
+ * <p>The {@code Obj*ToObjFunction}, {@code Obj*Predicate}, and
+ * {@code Obj*Consumer} families accept
+ * an object as their first argument and an unboxed primitive value as their
+ * second argument.
+ * The {@code Obj*To*Function} family additionally returns an unboxed value
+ * of the same primitive type as its second argument.
  *
  * <h2>Composition and Fluent Usage</h2>
  * <p>Interfaces in this package are typically designed to support:
